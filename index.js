@@ -3,7 +3,7 @@ const express = require('express');
 const DB = require('./db');
 const expressApp = express();
 
-const TOKEN = '1708052796:AAFar1GGlUl4PA7sF5swwIPxVR_-j1SB56I';
+const TOKEN = process.env.TEL_TOKEN;
 const URL = 'https://euro2021bet.herokuapp.com';
 // const URL = 'https://f9ebc4f00be7.ngrok.io';
 const bot = new Telegraf(TOKEN);
