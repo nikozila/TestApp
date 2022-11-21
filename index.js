@@ -4,7 +4,7 @@ const DB = require('./db');
 const expressApp = express();
 
 const TOKEN = process.env.TEL_TOKEN;
-const URL = 'https://euro2021bet.herokuapp.com';
+const URL = 'https://footballbetapp.onrender.com';
 // const URL = 'https://f9ebc4f00be7.ngrok.io';
 const bot = new Telegraf(TOKEN);
 

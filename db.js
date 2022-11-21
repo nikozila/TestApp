@@ -11,9 +11,9 @@ const GAME_STATUS = {
 async function connect() {
     client = new Client({
         user: 'kblurtgdeqwwnk',
-        host: 'ec2-34-247-118-233.eu-west-1.compute.amazonaws.com',
-        database: 'deu33qntuk6utj',
-        password: 'e8bbd36eba3c6a952892879a42a4e6ddc09f4e5efa6548702235a931c9b7a5a8',
+        host: 'dpg-cdtqllqen0hlde46t11g-a',
+        database: 'footballbetappdb',
+        password: '5ifvNeO7JCrmpBYQ9MAUmqfZMqLSULVu',
         port: 5432,
         ssl: { rejectUnauthorized: false }
     });
