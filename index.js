@@ -10,6 +10,7 @@ const bot = new Telegraf(TOKEN);
 
 const PORT = process.env.PORT || 433;
 
+await bot.telegram.deleteWebhook();
 bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
     source: './certs/crt.pem'
 });
