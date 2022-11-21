@@ -16,7 +16,7 @@ bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
 expressApp.use(bot.webhookCallback(`/bot${TOKEN}`));
 
 expressApp.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send(`Hello World! Tel: ${TOKEN}`);
 });
 expressApp.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
