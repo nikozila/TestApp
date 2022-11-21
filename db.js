@@ -10,10 +10,10 @@ const GAME_STATUS = {
 
 async function connect() {
     client = new Client({
-        user: 'kblurtgdeqwwnk',
-        host: 'dpg-cdtqllqen0hlde46t11g-a',
+        user: process.env.DB_USER,
+        host: process.env.DB_HOST,
         database: 'footballbetappdb',
-        password: '5ifvNeO7JCrmpBYQ9MAUmqfZMqLSULVu',
+        password: process.env.DB_PASS,
         port: 5432,
         ssl: { rejectUnauthorized: false }
     });
