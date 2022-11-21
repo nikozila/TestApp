@@ -10,10 +10,10 @@ const bot = new Telegraf(TOKEN);
 
 const PORT = process.env.PORT || 433;
 
-await bot.telegram.deleteWebhook();
-bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
-    source: './certs/crt.pem'
-});
+// bot.telegram.deleteWebhook();
+// bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
+//     source: './certs/crt.pem'
+// });
 expressApp.use(bot.webhookCallback(`/bot${TOKEN}`));
 
 expressApp.get('/', (req, res) => {
@@ -26,16 +26,16 @@ expressApp.listen(PORT, () => {
 
 bot.launch();
 
-// startPolling();
+startPolling();
 
-// async function startPolling() {
-//     try {
-//         await bot.telegram.deleteWebhook();
-//         await bot.startPolling();
-//     } catch(e) {
-//         console.log('GOT IT!');
-//     }
-// }
+async function startPolling() {
+    try {
+        await bot.telegram.deleteWebhook();
+        await bot.startPolling();
+    } catch(e) {
+        console.log('Polling Error', e.message);
+    }
+}
 
 const TASKS = {
     CREATE_NEW_GAME: '0',
