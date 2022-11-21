@@ -219,7 +219,7 @@ bot.on('text', async (ctx) => {
             if (data[username].team2) {
                 //GETTING IF IS GROUP OR NOT
                 data[username].is_group = msg === 'Yes' ? true : false;
-                // console.log(data);
+                console.log(data[username]);
                 await DB.newMatch(data[username].team1, data[username].team2, data[username].is_group);
                 data[username] = {};
                 bot.telegram.sendMessage(id, 'Done, you can use /menu again.', mainMenu);
@@ -382,6 +382,7 @@ bot.on('text', async (ctx) => {
     
         }
     } catch(e) {
+        console.log('Err msg: ', e.message);
         bot.telegram.sendMessage(id, `Error with code ${data[username].task}, Plz try again."`, mainMenu);
     }
 
