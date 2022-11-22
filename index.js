@@ -21,9 +21,6 @@ expressApp.use(await bot.createWebhook({ domain: URL }));
 expressApp.get('/', (_req, res) => {
     res.send(`Hello World!`);
 });
-expressApp.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
 
 // startPolling();
 
