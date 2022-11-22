@@ -23,15 +23,13 @@ expressApp.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
-
-bot.launch();
-
 startPolling();
 
 async function startPolling() {
     try {
         await bot.telegram.deleteWebhook();
         await bot.startPolling();
+        bot.launch();
     } catch(e) {
         console.log('Polling Error', e.message);
     }
