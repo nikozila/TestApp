@@ -11,9 +11,9 @@ const bot = new Telegraf(TOKEN);
 const PORT = process.env.PORT || 433;
 
 // bot.telegram.deleteWebhook();
-// bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
-//     source: './certs/crt.pem'
-// });
+bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
+    source: './certs/crt.pem'
+});
 expressApp.use(bot.webhookCallback(`/bot${TOKEN}`));
 
 expressApp.get('/', (req, res) => {
@@ -23,13 +23,15 @@ expressApp.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
+
+bot.launch();
+
 startPolling();
 
 async function startPolling() {
     try {
         await bot.telegram.deleteWebhook();
         await bot.startPolling();
-        bot.launch();
     } catch(e) {
         console.log('Polling Error', e.message);
     }
