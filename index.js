@@ -26,16 +26,16 @@ expressApp.listen(PORT, () => {
 
 bot.launch();
 
-startPolling();
+// startPolling();
 
-async function startPolling() {
-    try {
-        await bot.telegram.deleteWebhook();
-        await bot.startPolling();
-    } catch(e) {
-        console.log('Polling Error', e.message);
-    }
-}
+// async function startPolling() {
+//     try {
+//         await bot.telegram.deleteWebhook();
+//         await bot.startPolling();
+//     } catch(e) {
+//         console.log('Polling Error', e.message);
+//     }
+// }
 
 const TASKS = {
     CREATE_NEW_GAME: '0',
