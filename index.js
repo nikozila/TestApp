@@ -14,9 +14,11 @@ const PORT = process.env.PORT || 433;
 // bot.telegram.setWebhook(`${URL}/bot${TOKEN}` , {
 //     source: './certs/crt.pem'
 // });
-expressApp.use(bot.webhookCallback(`/bot${TOKEN}`));
+// expressApp.use(bot.webhookCallback(`/bot${TOKEN}`));
 
-expressApp.get('/', (req, res) => {
+expressApp.use(await bot.createWebhook({ domain: URL }));
+
+expressApp.get('/', (_req, res) => {
     res.send(`Hello World!`);
 });
 expressApp.listen(PORT, () => {
