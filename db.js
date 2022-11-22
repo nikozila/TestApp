@@ -51,7 +51,7 @@ async function calculateUserScores(matchId, team1Goals, team2Goals, winner, isGr
         }
 
         if (!isGroup && predictionWinner == winner) {
-            userScore += 10;
+            userScore += 5;
         }
 
         promises.push(client.query(`UPDATE users SET score = score+${userScore} WHERE id = ${userMatch.user_id}`));
@@ -68,9 +68,10 @@ module.exports = {
         `);
 
         if (users.rows.length === 0) {
-            const query = 'INSERT INTO users(username, score) VALUES($1, $2)';
-            const values = [username, 0];
-            await client.query(query, values);
+            throw new Error("Cannot register new user");
+            // const query = 'INSERT INTO users(username, score) VALUES($1, $2)';
+            // const values = [username, 0];
+            // await client.query(query, values);
         }
         // await end();
         

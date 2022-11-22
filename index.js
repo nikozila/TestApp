@@ -63,7 +63,7 @@ bot.command('start', async ctx => {
 
         bot.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.from.username}, Click /menu`, {});
     } catch(e) {
-        console.log('eror: ', e);
+        console.log('eror: ', e.message);
         bot.telegram.sendMessage(ctx.chat.id, `Error initializing user, Click /start again.`, {});
     }
 });
