@@ -17,7 +17,7 @@ async function connect() {
         port: 5432,
         ssl: { rejectUnauthorized: false }
     });
-    
+    await client.connect();
 }
 
 
