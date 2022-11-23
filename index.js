@@ -327,6 +327,7 @@ async function gameStarted(id, username) {
             bot.telegram.sendMessage(id, 'No Match Available', mainMenu);
         }
     } catch(e) {
+        console.log('error: ', e.message);
         bot.telegram.sendMessage(id, 'Error during "match started", Plz try again."', mainMenu);
     }
 
@@ -352,6 +353,7 @@ async function gameFinished(id, username) {
             bot.telegram.sendMessage(id, 'No Match Available', mainMenu);    
         }
     } catch(e) {
+        console.log('eror: ', e.message);
         bot.telegram.sendMessage(id, 'Error during "match finished", Plz try again."', mainMenu);
     }
 
@@ -378,6 +380,7 @@ async function letsBet(id, username) {
             bot.telegram.sendMessage(id, 'No Match Available', mainMenu);
         }
     } catch(e) {
+        console.log('eror: ', e.message);
         bot.telegram.sendMessage(id, 'Error during "lets bet", Plz try again."', mainMenu);
     }
 }
@@ -388,6 +391,7 @@ async function showUsersRank(id) {
         const usersRank = users.map(user => `${user.username}: ${user.score}`);
         bot.telegram.sendMessage(id, usersRank.join('\n'), mainMenu);
     } catch(e) {
+        console.log('eror: ', e.message);
         bot.telegram.sendMessage(id, 'Error during "Show Rank", Plz try again."', mainMenu);
     }
 }
@@ -427,5 +431,5 @@ const mainMenu = {
 
 
 
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
+// process.once('SIGINT', () => bot.stop('SIGINT'));
+// process.once('SIGTERM', () => bot.stop('SIGTERM'));
