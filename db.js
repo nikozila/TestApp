@@ -22,10 +22,12 @@ async function connect() {
 
 
 async function calculateUserScores(matchId, team1Goals, team2Goals, winner, isGroup) {
+    await client.connect();
     const query = `SELECT * FROM user_match LEFT JOIN users
             ON users.id = user_match.user_id
             WHERE user_match.match_id = ${matchId}`;
     const result = await client.query(query);
+    
 
     const promises = [];
     
@@ -78,35 +80,41 @@ export const DB = {
     },
     
     newMatch: async (team1, team2, isGroup) => {
+        await client.connect();
         const query = `INSERT INTO matches(team1, team2, is_group, status) VALUES($1, $2, $3, $4)`;
         const values = [team1, team2, isGroup, GAME_STATUS.NOT_STARTED];
         await client.query(query, values);
     },
 
     getNotStartedMatches: async () => {
+        await client.connect();
         const query = `select * from matches where status = ${GAME_STATUS.NOT_STARTED}`;
         const result = await client.query(query);
         return result.rows;
     },
 
     getStartedMatches: async () => {
+        await client.connect();
         const query = `select * from matches where status = ${GAME_STATUS.STARTED}`;
         const result = await client.query(query);
         return result.rows;
     },
 
     setGameAsStarted: async(matchId) => {
+        await client.connect();
         const query = `UPDATE matches SET status = ${GAME_STATUS.STARTED} WHERE id = ${matchId}`;
         await client.query(query);
     },
 
     getMatchById: async(matchId) => {
+        await client.connect();
         const query = `SELECT * FROM matches WHERE id = ${matchId}`;
         const result = await client.query(query);
         return result.rows[0];
     },
 
     setGameAsFinished: async(matchId, team1Goals, team2Goals, winner, isGroup) => {
+        await client.connect();
         const query = `UPDATE matches SET status = ${GAME_STATUS.FINISHED},
                         team1_result = ${team1Goals},
                         team2_result = ${team2Goals},
@@ -118,6 +126,7 @@ export const DB = {
     },
 
     bet: async(matchId, team1Goals, team2Goals, winner, username) => {
+        await client.connect();
         let query = `SELECT * FROM users WHERE username = '${username}'`;
         let result = await client.query(query);
         const user = result.rows[0];
@@ -143,6 +152,7 @@ export const DB = {
     },
 
     getUsersRank: async() => {
+        await client.connect();
         let query = `SELECT * FROM users`;
         let result = await client.query(query);
         const users = result.rows;
@@ -150,6 +160,7 @@ export const DB = {
     },
 
     getUsersPrediction: async(matchId) => {
+        await client.connect();
         const fields = [
             'um.team1_goals',
             'um.team2_goals',
