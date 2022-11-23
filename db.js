@@ -1,4 +1,4 @@
-const { Client } = require('pg')
+import * as pg from 'pg';
 
 let client = null;
 
@@ -9,7 +9,7 @@ const GAME_STATUS = {
 }
 
 async function connect() {
-    client = new Client({
+    client = new pg.Client({
         user: process.env.DB_USER,
         host: process.env.DB_HOST,
         database: 'footballbetappdb',
@@ -60,7 +60,7 @@ async function calculateUserScores(matchId, team1Goals, team2Goals, winner, isGr
     await Promise.all(promises);
 }
 
-module.exports = {
+export const DB = {
     newUser: async (username) => {
         await connect();
         const users = await client.query(`
