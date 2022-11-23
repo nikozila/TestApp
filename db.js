@@ -1,4 +1,4 @@
-import * as pg from 'pg';
+import { Client } from 'pg';
 
 let client = null;
 
@@ -9,7 +9,7 @@ const GAME_STATUS = {
 }
 
 async function connect() {
-    client = new pg.Client({
+    client = new Client({
         user: process.env.DB_USER,
         host: process.env.DB_HOST,
         database: 'footballbetappdb',
