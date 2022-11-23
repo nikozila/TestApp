@@ -26,6 +26,8 @@ expressApp.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
+let id = 0;
+
 
 
 // startPolling();
