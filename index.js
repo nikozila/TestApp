@@ -433,3 +433,9 @@ const mainMenu = {
 
 // process.once('SIGINT', () => bot.stop('SIGINT'));
 // process.once('SIGTERM', () => bot.stop('SIGTERM'));
+
+process.on('uncaughtException', function (err) {       
+    console.log(err);
+    //Send some notification about the error  
+    process.exit(1);
+});
