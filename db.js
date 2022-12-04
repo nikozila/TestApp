@@ -27,7 +27,7 @@ async function connect() {
         database: 'footballbetappdb',
         password: process.env.DB_PASS,
         port: 5432,
-        ssl: { rejectUnauthorized: false },
+        ssl: true,
     });
     try {
         client = await pgClient.connect();
