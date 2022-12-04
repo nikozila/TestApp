@@ -9,28 +9,28 @@ const GAME_STATUS = {
 }
 
 async function connect() {
-    const pool = new pg.Pool({
-        user: process.env.DB_USER,
-        host: process.env.DB_HOST,
-        database: 'footballbetappdb',
-        password: process.env.DB_PASS,
-        port: 5432,
-        ssl: { rejectUnauthorized: false },
-        max: 200,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 2000,
-    });
-
-    // client = new pg.Client({
+    // const pool = new pg.Pool({
     //     user: process.env.DB_USER,
     //     host: process.env.DB_HOST,
     //     database: 'footballbetappdb',
     //     password: process.env.DB_PASS,
     //     port: 5432,
-    //     ssl: true,
+    //     ssl: { rejectUnauthorized: false },
+    //     max: 200,
+    //     idleTimeoutMillis: 30000,
+    //     connectionTimeoutMillis: 2000,
     // });
+
+    client = new pg.Client({
+        user: process.env.DB_USER,
+        host: process.env.DB_HOST,
+        database: 'footballbetappdb',
+        password: process.env.DB_PASS,
+        port: 5432,
+        ssl: true,
+    });
     try {
-        client = await pool.connect();
+        client = await client.connect();
     } catch(e) {
         console.log('Error init DB in db file', e.message);
     }
@@ -38,7 +38,7 @@ async function connect() {
 
 async function end() {
     if (client) {
-        await client.release();
+        await client.end();
     }
 }
 
