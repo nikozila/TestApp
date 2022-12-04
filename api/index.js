@@ -4,7 +4,7 @@ import { DB } from '../db.js';
 
 const expressApp = express();
 const TOKEN = process.env.TEL_TOKEN;
-const URL = 'https://beautiful-baklava-0c29e3.netlify.app';
+const URL = 'https://football-bet-app.vercel.app';
 // const URL = 'https://f9ebc4f00be7.ngrok.io';
 const bot = new Telegraf(TOKEN);
 
@@ -20,7 +20,7 @@ expressApp.use(await bot.createWebhook({ domain: `${URL}/bot${TOKEN}` }));
 
 expressApp.get('/api', (_req, res) => {
     console.log('----GET REQUEST Website----');
-    res.send(`Hello World!`);
+    res.send(`!Hello World!`);
 });
 
 expressApp.listen(PORT, () => {
