@@ -4,7 +4,7 @@ import { DB } from '../db.js';
 
 const expressApp = express();
 const TOKEN = process.env.TEL_TOKEN;
-const URL = 'https://football-bet-app.vercel.app';
+const URL = 'https://football-bet-app.vercel.app/api';
 // const URL = 'https://f9ebc4f00be7.ngrok.io';
 const bot = new Telegraf(TOKEN);
 
