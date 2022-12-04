@@ -21,7 +21,7 @@ async function connect() {
     //     connectionTimeoutMillis: 2000,
     // });
 
-    const pgClient = new pg.Client({
+    client = new pg.Client({
         user: process.env.DB_USER,
         host: process.env.DB_HOST,
         database: 'footballbetappdb',
@@ -30,7 +30,7 @@ async function connect() {
         ssl: true,
     });
     try {
-        client = await pgClient.connect();
+        await client.connect();
     } catch(e) {
         console.log('Error init DB in db file', e.message);
     }
