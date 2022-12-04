@@ -1,6 +1,6 @@
 import {Telegraf} from 'telegraf';
 import express from 'express';
-import { DB } from '../db.js';
+import { DB } from './db.js';
 
 const expressApp = express();
 const TOKEN = process.env.TEL_TOKEN;
