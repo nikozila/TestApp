@@ -9,7 +9,15 @@ const GAME_STATUS = {
 }
 
 async function connect() {
-    if (client) {return};
+    if (client) {
+        try {
+            await client.query('select * from users');
+            return;
+        } catch(e) {
+            console.log('---CANNOT CONNECT TO DB, INIT POOL AGAIN');
+        }
+    };
+    
     const pool = new pg.Pool({
         user: process.env.DB_USER,
         host: process.env.DB_HOST,
