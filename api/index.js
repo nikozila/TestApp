@@ -1,6 +1,6 @@
 import {Telegraf} from 'telegraf';
 import express from 'express';
-import { DB } from './db.js';
+import { DB } from '../db.js';
 
 const expressApp = express();
 const TOKEN = process.env.TEL_TOKEN;
@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 433;
 
 expressApp.use(await bot.createWebhook({ domain: `${URL}/bot${TOKEN}` }));
 
-expressApp.get('/', (_req, res) => {
+expressApp.get('/api', (_req, res) => {
     console.log('----GET REQUEST Website----');
     res.send(`Hello World!`);
 });
